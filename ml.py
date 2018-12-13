@@ -4,6 +4,8 @@ import pickle
 from collections import Counter
 from sklearn import svm, model_selection, neighbors
 from sklearn.ensemble import VotingClassifier, RandomForestClassifier
+
+from statistics import mean
 #features are the pricing changes that day for all companies
 #label will be whether or not we actually want to buy a specific company
 
@@ -76,5 +78,20 @@ def do_ml(ticker):
     print('Predicted data:', Counter(predictions))
 
     return confidence
+'''
+with open("sp500tickers.pickle","rb") as f:
+    tickers = pickle.load(f)
 
+accuracies = []
+for count,ticker in enumerate(tickers):
+
+    if count%10==0:
+        print(count)
+
+    accuracy = do_ml(ticker)
+    accuracies.append(accuracy)
+    print("{} accuracy: {}. Average accuracy:{}".format(ticker,accuracy,mean(accuracies)))
+'''
 do_ml('APA')
+do_ml('MMM')
+do_ml('AAL')

@@ -22,7 +22,7 @@ def save_sp500_tickers():
     table = soup.find('table', {'class':'wikitable sortable'})
     tickers = []
     #for every tr in the table excluding the first row
-    for row in table.findAll('tr')[1:]:
+    for row in table.findAll('tr')[1:50]:
         ticker = row.findAll('td')[0].text
         tickers.append(ticker)
     with open("sp500tickers.pickle", "wb") as f:
@@ -118,7 +118,9 @@ def visualize_data():
     plt.show()
 
     
-visualize_data()
+#visualize_data()
+save_sp500_tickers()
+#compile_data()
    
 
         
